@@ -3,9 +3,14 @@
  */
 import React,{Component} from 'react';
 import {Button,Nav,Navbar,NavItem,NavDropdown,MenuItem } from 'react-bootstrap';
+import './App.css'
 
-// import 'node_modules/_bootstrap@4.1.3@bootstrap/dist/css/bootstrap.css';
+// import '../node_modules/_bootstrap@4.1.3@bootstrap/dist/css/bootstrap.css';
 // import '/Users/apple/Documents/ReactDemo/reactrouter1/node_modules/_bootstrap@4.1.3@bootstrap/dist/css/bootstrap.css';
+
+
+// import 'bootstrap/dist/css/bootstrap.css'
+// import '../../node_modules/bootstrap/dist/css/bootstrap.css';
 
 import Home from './Home'
 import User from './User'
@@ -32,11 +37,11 @@ export default class App extends Component{
 
         return (
             <Router>
-                <div>
+                <div className="header">
 
 
                     <div>
-                        <nav className="navbar navbar-inverse">
+                        <nav className="navbar navbar-default navCustom">
                             <div className="container-fluid">
                                 <div className="navbar-header">
                                     <div className="navbar-brand">
