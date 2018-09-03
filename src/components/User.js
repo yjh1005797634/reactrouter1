@@ -11,6 +11,11 @@ export default class User extends Component {
         return (
             <div>
                 User
+                user
+
+
+
+                user
             </div>
         )
     }

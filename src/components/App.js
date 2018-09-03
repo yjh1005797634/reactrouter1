@@ -15,8 +15,8 @@ import Profile from './Profile'
 
 import {
     HashRouter as Router, //容器
-    Route  // 一条路由
-
+    Route,  // 一条路由
+    Link
 } from 'react-router-dom';
 
 
@@ -26,9 +26,6 @@ import {
 export default class App extends Component{
 
 
-    handleSelect = (selectKey)=>{
-        alert('选择'+ selectKey );
-    }
 
 
     render(){
@@ -37,16 +34,36 @@ export default class App extends Component{
             <Router>
                 <div>
 
-                    <Nav bsStyle="pills" stacked activeKey={1} onSelect={this.handleSelect}>
-                        <NavItem eventKey={1} href="/home">导航条目 1 的内容</NavItem>
-                        <NavItem eventKey={2} title="Item">导航条目 2 的内容</NavItem>
-                        <NavItem eventKey={3} disabled>导航条目 3 的内容</NavItem>
-                    </Nav>
+
+                    <div>
+                        <nav className="navbar navbar-inverse">
+                            <div className="container-fluid">
+                                <div className="navbar-header">
+                                    <div className="navbar-brand">
+                                        珠峰用户管理系统
+                                    </div>
+                                </div>
+                                <ul className="nav navbar-nav">
+                                    <li><Link to="/home">首页</Link></li>
+                                    <li><Link to="/user">用户</Link></li>
+                                    <li><Link to="/profile">设置</Link></li>
+                                </ul>
+                            </div>
+
+                        </nav>
+
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <Route path="/home" component={Home} />
+                                    <Route path="/user" component={User} />
+                                    <Route path="/profile" component={Profile} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
-                    <Route path="/home" component={Home} />
-                    <Route path="/user" component={User} />
-                    <Route path="/profile" component={Profile} />
                 </div>
             </Router>
 
