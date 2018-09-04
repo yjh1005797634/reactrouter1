@@ -105,9 +105,6 @@
               localStorage.setItem('login','true');
               props.history.push(props.location.state.from)
 
-
-
-
               /* 打印出来  是 {from: "/profile"} */
               {/*console.log(props.location.state);*/}
           }
@@ -115,7 +112,66 @@
       }
 
 
+7.创建组件的两种方式
+  /*
+    创建组件有两种方式
 
+    一、通过class 继承Component方式
+    二、通过函数的方式创建
+        1.通过函数创建组件的时候 参数是固定死的 props (父组件使用这个组件的时候 传进来的)
+    三、什么时候用函数创建组件  什么时候用继承Component创建组件
+        1.当组件不需要改变状态的时候 用函数
+        2.当需要用到state 状态的时候  用类 支持状态
+
+    四、 props =   {path:"/profile" component:Profile} 结构出来
+
+    五、 return <Route {...rest} />    <=> 等价于 return <Route {path='/profile'} />
+   */
+
+8.点击导航按钮 高亮设置
+
+  /*
+    高亮设计精巧: children 不管传来的path是否匹配 match 都会渲染一个li 组件 但只是渲染的css样式不同
+   */
+
+
+
+  <MenuLink label="首页" to="/home" />
+  <MenuLink label="用户管理" to="/user" />
+  <MenuLink label="个人设置" to="/profile" />
+
+
+
+
+  export default function ({to, label}) {
+
+
+      return (
+          <Route path={to} children = {({match}) => {
+
+
+              {/*console.log(this.props.children);*/}
+
+              {/*console.log(match);*/}
+              return <li className={match?'active':''}>
+
+                  <Link to={to}>{label}</Link>
+              </li>
+          }} />
+      )
+  }
+
+
+9.新增用户的时候 在输入框输入内容的时候 突然点了别的按钮 页面需要提示框
+
+  组件Prompt
+
+  通过设置 blocking状态 控制 是否提示 当输入框内有值 并且长度>0 的时候 跳转会提示
+
+
+  <Prompt
+          when={this.state.blocking}
+          message={(location) =>'你确定要跳转到 '+location.pathname+''} />
 
 
 
