@@ -1,0 +1,9 @@
+
+.list-group-item .deleteBtn {
+    display: none;
+}
+
+.list-group-item:hover .deleteBtn {
+    display: inline-block;
+    margin-left: 660px;
+}

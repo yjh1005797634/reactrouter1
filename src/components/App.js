@@ -5,13 +5,6 @@ import React,{Component} from 'react';
 import {Button,Nav,Navbar,NavItem,NavDropdown,MenuItem } from 'react-bootstrap';
 import './App.css'
 
-// import '../node_modules/_bootstrap@4.1.3@bootstrap/dist/css/bootstrap.css';
-// import '/Users/apple/Documents/ReactDemo/reactrouter1/node_modules/_bootstrap@4.1.3@bootstrap/dist/css/bootstrap.css';
-
-
-// import 'bootstrap/dist/css/bootstrap.css'
-// import '../../node_modules/bootstrap/dist/css/bootstrap.css';
-
 import Home from './Home'
 import User from './User'
 import Profile from './Profile'
@@ -19,7 +12,8 @@ import Profile from './Profile'
 
 
 import {
-    HashRouter as Router, //容器
+    // HashRouter as Router, //容器 HashRouter 容易报错 出现多次点击的时候 hash push history的报错
+    BrowserRouter as Router,
     Route,  // 一条路由
     Link
 } from 'react-router-dom';
@@ -30,18 +24,12 @@ import {
 /*这里是导出一个App组件 实例  */
 export default class App extends Component{
 
-
-
-
     render(){
-
         return (
             <Router>
                 <div className="header">
-
-
                     <div>
-                        <nav className="navbar navbar-default navCustom">
+                        <nav className="navbar navbar-default">
                             <div className="container-fluid">
                                 <div className="navbar-header">
                                     <div className="navbar-brand">
@@ -54,8 +42,8 @@ export default class App extends Component{
                                     <li><Link to="/profile">设置</Link></li>
                                 </ul>
                             </div>
-
                         </nav>
+
 
                         <div className="container">
                             <div className="row">
@@ -67,8 +55,6 @@ export default class App extends Component{
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </Router>
 
