@@ -2,7 +2,7 @@
  * Created by apple on 18/9/3.
  */
 import React,{Component} from 'react';
-import {Link,Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import './userList.css'
 
 export default class userList extends Component {
@@ -80,7 +80,7 @@ export default class userList extends Component {
 
                         <li className="list-group-item" key={index}>
                             {/*<Link to="/user/detail/2">李四</Link>*/}
-                            <Link  to={'/user/detail'+ user.id}>{user.name}</Link>
+                            <Link  to={'/user/detail/'+ user.id}>{user.name}</Link>
                             <button className="btn btn-danger btn-sm deleteBtn" onClick={()=> this.deleBtn(index)} >删除</button>
                         </li>
                     ))

@@ -2,7 +2,7 @@
  * Created by apple on 18/9/3.
  */
 import React,{Component} from 'react';
-import {Button,Nav,Navbar,NavItem,NavDropdown,MenuItem } from 'react-bootstrap';
+// import {Button,Nav,Navbar,NavItem,NavDropdown,MenuItem } from 'react-bootstrap';
 import './App.css'
 
 import Home from './Home'

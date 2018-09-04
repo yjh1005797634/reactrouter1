@@ -11,3 +11,5 @@
 4.管理用户列表:
    添加用户到localStorage
    删除用户 先根据字符取 再删除 splice  删完后再存储到loaclStorage
+   用户详情 展示 箭头
+    箭头函数进一步掌握
