@@ -7,7 +7,20 @@
 3.引入bootstrap react16.4 不支持bootstrap4^的版本 支持3.3.7版本
   3.1 修改bootstrap样式:  提高权重 可以修改
 
-4.路由文件的设置 二级路由的设置 
+4.路由文件的设置 二级路由的设置
+  路由选择组件里面有三个属性
+  location:当前路径
+  history:跳转路径
+  match:匹配结果 当前路径匹配上了就有值
+
+  <Route path='/:name' render={
+     props=>{
+
+         <div>{props.match.params.name}</div>
+
+     }
+
+     />
 
 5.管理用户列表:
    添加用户到localStorage
