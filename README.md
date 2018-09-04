@@ -22,6 +22,9 @@
 
      />
 
+
+   路由的精确匹配: exact 属性
+
 5.管理用户列表:
    添加用户到localStorage
    删除用户 先根据字符取 再删除 splice  删完后再存储到loaclStorage
