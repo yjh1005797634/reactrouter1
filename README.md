@@ -25,8 +25,111 @@
 
    路由的精确匹配: exact 属性
 
+   路由的从上到下匹配 组件 Switch组件 从上往下匹配 如果有一个匹配上了 后面不再匹配
+
+       <Switch>
+               <Route path="/" render={props=><div>首页</div>}/>
+               <Route path="/:name" render={props=><div>{props.match.params.name}</div>}/>
+
+               <Route path="/home" component={Home} />
+               <Route path="/user" component={User} />
+               <Route path="/profile" component={Profile} />
+       </Switch>
+
+
+
 5.管理用户列表:
    添加用户到localStorage
    删除用户 先根据字符取 再删除 splice  删完后再存储到loaclStorage
    用户详情 展示 箭头
     箭头函数进一步掌握
+
+
+6.保护未登录不能访问的路径  网易云音乐的 我的音乐有这个需求
+  当用户访问个人设置的时候,先判断是否登录,如果已经登录则直接显示个人设置,如果未登录则跳转到登录页面
+  进行登录,如果登录成功则自动跳回到登录前的页面
+
+
+           <Switch>
+
+               <Route exact path="/" render={props=><div>首页</div>}/>
+               <Route path="/home" component={Home} />
+               <Route path="/user" component={User} />
+               <Route path="/login" component={Login}/>
+
+               {/*这里 ProtectedRoute  Profile不是路由 就是一个普通组件 父组件传入两个属性    */}
+               <ProtectedRoute path="/profile" component={Profile} />
+               {/*<Route path="/profile" component={Profile} />*/}
+
+
+           </Switch>
+
+
+   到ProtectedRoute页面
+
+      export default function ({component:Component,...rest}) {
+
+          /*
+             返回一个路由 路由路径是 path 然后渲染
+              从localStorage里面取登录状态  如果登录过 那么渲染Profile 组件
+              如果没有登录过,则重定向 到登录路由 并且记录状态 记录这个组件的pathname
+           */
+
+          return <Route {...rest} render= {
+
+              (props) => localStorage.getItem('login')?<Component/>:
+                  <Redirect to = {{
+                    pathname:'login',
+
+                      /*当跳转到login的时候 给login传了一个state参数 就是当前对象的当前pathname 即 /profile传给了login
+
+                       state:props.location.pathname
+                 */
+
+
+                      state:{from:props.location.pathname}
+
+
+                }}/>
+          }/>
+
+      }
+
+
+      到login 页面
+
+      export default function (props) {
+
+          return <button className="btn btn-primary" onClick={()=>{
+
+              localStorage.setItem('login','true');
+              props.history.push(props.location.state.from)
+
+
+
+
+              /* 打印出来  是 {from: "/profile"} */
+              {/*console.log(props.location.state);*/}
+          }
+          }>登录</button>
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

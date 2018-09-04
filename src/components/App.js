@@ -5,17 +5,20 @@ import React,{Component} from 'react';
 // import {Button,Nav,Navbar,NavItem,NavDropdown,MenuItem } from 'react-bootstrap';
 import './App.css'
 
+
+
 import Home from './Home'
 import User from './User'
 import Profile from './Profile'
-
-
+import ProtectedRoute from './ProtectedRoute'
+import Login from './Login'
 
 import {
     // HashRouter as Router, //容器 HashRouter 容易报错 出现多次点击的时候 hash push history的报错
     BrowserRouter as Router,
     Route,  // 一条路由
-    Link
+    Link,
+    Switch
 } from 'react-router-dom';
 
 
@@ -48,9 +51,18 @@ export default class App extends Component{
                         <div className="container">
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <Route path="/home" component={Home} />
-                                    <Route path="/user" component={User} />
-                                    <Route path="/profile" component={Profile} />
+
+                                    <Switch>
+                                        <Route exact path="/" render={props=><div>首页</div>}/>
+                                        <Route path="/home" component={Home} />
+                                        <Route path="/user" component={User} />
+                                        <Route path="/login" component={Login}/>
+
+                                        {/*这里 ProtectedRoute  Profile不是路由 就是一个普通组件 父组件传入两个属性    */}
+                                        <ProtectedRoute path="/profile" component={Profile} />
+                                        {/*<Route path="/profile" component={Profile} />*/}
+                                    </Switch>
+
                                 </div>
                             </div>
                         </div>
